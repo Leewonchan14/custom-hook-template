@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# 커스텀 훅 설명
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+이 폴더에는 다양한 커스텀 훅들이 포함되어 있습니다. 각 훅의 기능은 다음과 같습니다:
 
-Currently, two official plugins are available:
+## `useDebounce`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+이 훅은 주어진 값이 변경된 후 일정 시간(delay)이 지나기 전까지 업데이트를 지연시킵니다. 주로 입력 필드와 같은 경우에 사용하여 사용자가 입력을 멈춘 후에만 값이 업데이트되도록 할 수 있습니다.
 
-## Expanding the ESLint configuration
+사용법:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```ts
+const debouncedValue = useDebounce(value, delay);
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## `useDebounceCallback`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+이 훅은 주어진 콜백 함수의 호출을 지연시킵니다. 주로 이벤트 핸들러와 같은 경우에 사용하여 사용자가 연속적으로 이벤트를 발생시킬 때 마지막 이벤트만 처리되도록 할 수 있습니다.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+사용법:
+
+```ts
+const debouncedCallback = useDebounceCallback(callback, delay, deps);
+```
+
+## `useThrottle`
+
+이 훅은 주어진 값이 일정 시간(limit) 내에 한 번만 업데이트되도록 합니다. 주로 스크롤 이벤트와 같은 경우에 사용하여 성능을 최적화할 수 있습니다.
+
+사용법:
+
+```ts
+const throttledValue = useThrottle(value, limit);
+```
+
+## `useThrottleCallback`
+
+이 훅은 주어진 콜백 함수의 호출을 일정 시간(limit) 내에 한 번만 허용합니다. 주로 이벤트 핸들러와 같은 경우에 사용하여 성능을 최적화할 수 있습니다.
+
+사용법:
+
+```ts
+const throttledCallback = useThrottleCallback(callback, limit, deps);
 ```
