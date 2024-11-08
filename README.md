@@ -54,10 +54,14 @@ isOnScreen, targetRef 를 반환하고 targetRef에 감지된 요소가 화면�
 
 해당 훅으로 화면에 노출되어있는 요소인지 아닌지 판별 가능합니다.
 
-사용법:
+### 사용법
 
 ```tsx
 const { isOnScreen, targetRef } = useScreenOn();
 
 <div ref={targetRef}>target</div>;
 ```
+
+### 사용화면
+
+<img style="border:3px solid black" width="300" src="./src/assets/화면 기록 2024-11-08 오후 12.02.25.gif">
