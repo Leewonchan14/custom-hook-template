@@ -41,3 +41,17 @@ const throttledValue = useThrottle(value, limit);
 ```ts
 const throttledCallback = useThrottleCallback(callback, limit, deps);
 ```
+
+## `useScreenOn`
+
+isOnScreen, targetRef 를 반환하고 targetRef에 감지된 요소가 화면에 노출될때 isOnScreen 변수가 true로 변경됩니다.
+
+해당 훅으로 화면에 노출되어있는 요소인지 아닌지 판별 가능합니다.
+
+사용법:
+
+```tsx
+const { isOnScreen, targetRef } = useScreenOn();
+
+<div ref={targetRef}>target</div>;
+```
