@@ -18,6 +18,10 @@
 const debouncedValue = useDebounce(value, delay);
 ```
 
+### 사용화면
+
+![alt text](./src/assets/useDebounce.gif)
+
 ## `useDebounceCallback`
 
 이 훅은 주어진 콜백 함수의 호출을 지연시킵니다. 주로 이벤트 핸들러와 같은 경우에 사용하여 사용자가 연속적으로 이벤트를 발생시킬 때 마지막 이벤트만 처리되도록 할 수 있습니다.
@@ -37,6 +41,10 @@ const debouncedCallback = useDebounceCallback(callback, delay, deps);
 ```ts
 const throttledValue = useThrottle(value, limit);
 ```
+
+### 사용화면
+
+![alt text](./src/assets/useThrottle.gif)
 
 ## `useThrottleCallback`
 
@@ -64,4 +72,4 @@ const { isOnScreen, targetRef } = useScreenOn();
 
 ### 사용화면
 
-<img style="border:3px solid black" width="300" src="./src/assets/화면 기록 2024-11-08 오후 12.02.25.gif">
+<img style="border:3px solid black" width="300" src="./src/assets/useScreenOn.gif">
