@@ -3,10 +3,11 @@
 이 폴더에는 다양한 커스텀 훅들이 포함되어 있습니다. 각 훅의 기능은 다음과 같습니다:
 
 1. [useDebounce](#usedebounce)
-1. [useDebounceCallback](#usedebouncecallback)
-1. [useThrottle](#usethrottle)
-1. [useThrottleCallback](#usethrottlecallback)
-1. [useScreenOn](#usescreenon)
+2. [useDebounceCallback](#usedebouncecallback)
+3. [useThrottle](#usethrottle)
+4. [useThrottleCallback](#usethrottlecallback)
+5. [useScreenOn](#usescreenon)
+6. [useScrollState](#usescrollstate)
 
 ## `useDebounce`
 
@@ -77,3 +78,32 @@ const { isOnScreen, targetRef, disconnect } = useScreenOn<HTMLDivElement>({
 ### 사용화면
 
 <img style="border:3px solid black" width="300" src="./src/assets/useScreenOn.gif">
+
+## `useScrollState`
+
+해당 훅으로 스크롤의 상태 (IDLE, DOWN, UP)중 하나로 판별 가능합니다.
+
+IDLE이 필요없다면 3번째 인자로 false를 입력하여 훅을 호출합니다.
+
+### 옵션
+
+1. offset = 0
+   offset 만큼 움직여야 상태가 변경됩니다.
+2. delay = 300
+   스크롤이 끝난뒤 delay 만큼 시간이 지나야 idle 상태로 변경됩니다.
+3. isCanIdle = true
+   Idle 상태를 기록할지 말지 정합니다.
+
+### 사용법
+
+```tsx
+const { scrollState } = useScrollState(100, undefined, ㅅtrue);
+
+useEffect(() => {
+  console.log('isDown: ', scrollState === ScrollDirection.DOWN);
+}, [scrollState]);
+```
+
+### 사용화면
+
+<img style="border:3px solid black" width="300" src="./src/assets/useScrollState.gif">
