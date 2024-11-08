@@ -62,10 +62,12 @@ isOnScreen, targetRef 를 반환하고 targetRef에 감지된 요소가 화면�
 
 해당 훅으로 화면에 노출되어있는 요소인지 아닌지 판별 가능합니다.
 
+disconnect, connect 함수로 계속 observing 할지 말지 변경 가능합니다.
+
 ### 사용법
 
 ```tsx
-const { isOnScreen, targetRef } = useScreenOn();
+const { isOnScreen, targetRef, disconnect, connect } = useScreenOn();
 
 <div ref={targetRef}>target</div>;
 ```
