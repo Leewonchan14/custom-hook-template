@@ -67,8 +67,9 @@ disconnect, connect 함수로 계속 observing 할지 말지 변경 가능합니
 ### 사용법
 
 ```tsx
-const { isOnScreen, isObserving, connect, disconnect, targetRef } =
-  useScreenOn();
+const { isOnScreen, targetRef, disconnect } = useScreenOn<HTMLDivElement>({
+  bottom: '-30%',
+});
 
 <div ref={targetRef}>target</div>;
 ```
