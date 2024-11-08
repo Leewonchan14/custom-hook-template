@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-const useScreenOn = (margin?: {
+const useScreenOn = <T extends HTMLElement>(margin?: {
   top?: string;
   right?: string;
   bottom?: string;
@@ -12,12 +12,12 @@ const useScreenOn = (margin?: {
     bottom: '0px',
     left: '0px',
   };
-  const targetRef = useRef(null);
-  const [isCanObserve, setIsCanObserve] = useState(true);
+  const targetRef = useRef<T>(null);
+  const [isObserving, setIsObserving] = useState(true);
   const [isOnScreen, setIsOnScreen] = useState(false);
 
   useEffect(() => {
-    if (!targetRef.current || !isCanObserve) return;
+    if (!targetRef.current || !isObserving) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => setIsOnScreen(entry.isIntersecting),
@@ -31,17 +31,23 @@ const useScreenOn = (margin?: {
     observer.observe(targetRef.current);
 
     return () => observer.disconnect();
-  }, [top, right, bottom, left, isCanObserve]);
+  }, [top, right, bottom, left, isObserving]);
 
   const disconnect = useCallback(() => {
-    setIsCanObserve(false);
+    setIsObserving(false);
   }, []);
 
   const connect = useCallback(() => {
-    setIsCanObserve(true);
+    setIsObserving(true);
   }, []);
 
-  return { isOnScreen, targetRef, disconnect, connect };
+  return {
+    isOnScreen,
+    isObserving,
+    targetRef,
+    disconnect,
+    connect,
+  };
 };
 
 export default useScreenOn;
