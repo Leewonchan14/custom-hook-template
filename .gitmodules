@@ -1,0 +1,4 @@
+[submodule "src/hooks"]
+	path = src/hooks
+	url = https://github.com/Leewonchan14/custom-hook-template
+	branch = sub_repository
